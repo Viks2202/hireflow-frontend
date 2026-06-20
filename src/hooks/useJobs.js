@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import api from '../api/axios'
 
 export function useJobs(filters) {
@@ -6,6 +6,8 @@ export function useJobs(filters) {
   const [pagination, setPagination] = useState({ total: 0, totalPages: 1 })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+
+  const filtersKey = useMemo(() => JSON.stringify(filters), [filters])
 
   const fetchJobs = useCallback(async () => {
     setLoading(true)
@@ -24,7 +26,8 @@ export function useJobs(filters) {
     } finally {
       setLoading(false)
     }
-  }, [JSON.stringify(filters)])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filtersKey])
 
   useEffect(() => {
     fetchJobs()
