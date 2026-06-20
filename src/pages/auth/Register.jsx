@@ -1,11 +1,13 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import toast from 'react-hot-toast'
 import { FiBriefcase } from 'react-icons/fi'
 
 export default function Register() {
-  const [form, setForm] = useState({ name: '', email: '', password: '', role: 'candidate' })
+  const [searchParams] = useSearchParams()
+  const initialRole = searchParams.get('role') === 'employer' ? 'employer' : 'candidate'
+  const [form, setForm] = useState({ name: '', email: '', password: '', role: initialRole })
   const [loading, setLoading] = useState(false)
   const { register } = useAuth()
   const navigate = useNavigate()

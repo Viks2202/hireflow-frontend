@@ -40,10 +40,10 @@ export default function Navbar() {
               </Link>
             )}
             {!user && (
-              <Link to="/jobs" className="text-slate-100 hover:text-amber-400 text-sm font-medium transition">
-                For Employers
-              </Link>
-            )}
+  <Link to="/register?role=employer" className="text-slate-100 hover:text-amber-400 text-sm font-medium transition">
+    For Employers
+  </Link>
+)}
           </div>
 
           <div className="hidden md:flex items-center gap-4">
