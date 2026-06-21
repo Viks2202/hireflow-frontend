@@ -10,6 +10,16 @@ import {
   FiUsers, FiArrowLeft, FiCheckCircle
 } from 'react-icons/fi'
 
+function formatSalary(salary) {
+  if (!salary) return null
+  if (typeof salary === 'object') {
+    const min = salary.min?.toLocaleString() || 0
+    const max = salary.max?.toLocaleString() || 0
+    return `₹${min} - ₹${max}`
+  }
+  return salary
+}
+
 export default function JobDetail() {
   const { id } = useParams()
   const { user } = useAuth()
@@ -83,6 +93,8 @@ export default function JobDetail() {
 
   if (!job) return null
 
+  const salaryText = formatSalary(job.salary)
+
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 fade-in">
       <Link to="/jobs" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-navy-900 mb-6">
@@ -122,9 +134,9 @@ export default function JobDetail() {
           <span className="flex items-center gap-1.5">
             <FiBriefcase size={14} /> {job.type || 'Full-time'}
           </span>
-          {job.salary && (
+          {salaryText && (
             <span className="flex items-center gap-1.5">
-              <FiDollarSign size={14} /> {job.salary}
+              <FiDollarSign size={14} /> {salaryText}
             </span>
           )}
           <span className="flex items-center gap-1.5">

@@ -2,7 +2,19 @@ import { Link } from 'react-router-dom'
 import { FiMapPin, FiClock, FiDollarSign, FiBriefcase, FiBookmark } from 'react-icons/fi'
 import { formatDistanceToNow } from 'date-fns'
 
+function formatSalary(salary) {
+  if (!salary) return null
+  if (typeof salary === 'object') {
+    const min = salary.min?.toLocaleString() || 0
+    const max = salary.max?.toLocaleString() || 0
+    return `₹${min} - ₹${max}`
+  }
+  return salary
+}
+
 export default function JobCard({ job, onSave, saved }) {
+  const salaryText = formatSalary(job.salary)
+
   return (
     <div className="bg-white border border-slate-100 rounded-xl p-5 hover:shadow-md hover:border-amber-300 transition group">
       <div className="flex items-start justify-between">
@@ -36,9 +48,9 @@ export default function JobCard({ job, onSave, saved }) {
         <span className="flex items-center gap-1">
           <FiBriefcase size={13} /> {job.type || 'Full-time'}
         </span>
-        {job.salary && (
+        {salaryText && (
           <span className="flex items-center gap-1">
-            <FiDollarSign size={13} /> {job.salary}
+            <FiDollarSign size={13} /> {salaryText}
           </span>
         )}
         <span className="flex items-center gap-1">
