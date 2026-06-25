@@ -5,8 +5,7 @@ import JobCard from '../components/job/JobCard'
 import Spinner from '../components/common/Spinner'
 import { FiSearch, FiFilter, FiX } from 'react-icons/fi'
 
-const JOB_TYPES = ['Full-time', 'Part-time', 'Contract', 'Internship', 'Remote']
-
+const JOB_TYPES = ['fulltime', 'parttime', 'contract', 'internship', 'remote']
 export default function Jobs() {
   const [searchParams, setSearchParams] = useSearchParams()
   const [searchInput, setSearchInput] = useState(searchParams.get('search') || '')
