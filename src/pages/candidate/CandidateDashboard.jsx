@@ -11,6 +11,8 @@ import {
   FiBriefcase, FiBookmark, FiCheckCircle, FiClock,
   FiUpload, FiFileText, FiExternalLink
 } from 'react-icons/fi'
+import ApplicationChart from '../../components/dashboard/ApplicationChart'
+import RecommendedJobs from '../../components/job/RecommendedJobs'
 
 export default function CandidateDashboard() {
   const { user } = useAuth()
@@ -135,8 +137,13 @@ export default function CandidateDashboard() {
         </div>
 
         <div className="space-y-6">
-          <div className="bg-white border border-slate-100 rounded-xl p-6">
-            <h2 className="font-semibold text-navy-900 mb-4">Resume</h2>
+      <div className="bg-white border border-slate-100 rounded-xl p-6">
+        <h2 className="font-semibold text-navy-900 mb-2">Application Breakdown</h2>
+        <ApplicationChart applications={applications} />
+      </div>
+
+      <div className="bg-white border border-slate-100 rounded-xl p-6">
+        <h2 className="font-semibold text-navy-900 mb-4">Resume</h2>
 
             {resumeUrl ? (
               <a
@@ -192,6 +199,10 @@ export default function CandidateDashboard() {
             </div>
           </div>
         </div>
+     </div>
+
+      <div className="mt-6">
+        <RecommendedJobs />
       </div>
     </div>
   )
