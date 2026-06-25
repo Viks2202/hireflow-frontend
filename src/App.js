@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { AuthProvider } from './context/AuthContext'
+import { SocketProvider } from './context/SocketContext'
 import ProtectedRoute from './components/common/ProtectedRoute'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
@@ -19,6 +20,7 @@ import AdminDashboard from './pages/admin/AdminDashboard'
 function App() {
   return (
     <AuthProvider>
+      <SocketProvider>
       <BrowserRouter>
         <div className="min-h-screen flex flex-col">
           <Navbar />
@@ -78,6 +80,7 @@ function App() {
         </div>
         <Toaster position="top-right" />
       </BrowserRouter>
+      </SocketProvider>
     </AuthProvider>
   )
 }
